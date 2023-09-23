@@ -6,11 +6,29 @@ import {
 } from "react-router-dom"
 import App from './App.jsx'
 import './index.css'
+import Home from './components/home/Home.jsx'
+import About from './components/about/About.jsx'
+import Contact from './components/contact/Contact.jsx'
+import Users from './components/users/Users.jsx'
 
 const router = createBrowserRouter ([
   {
     path: '/',
-    element: <div>Hello from React-Router Concept </div>
+    element: <Home/>,
+    children: [
+      {
+        path: '/about',
+        element: <About/>
+      },
+      {
+        path: '/contact',
+        element: <Contact/>
+      },
+      {
+        path: '/users',
+        element: <Users/>
+      }
+    ]
   },
   {
     path: '/about',
