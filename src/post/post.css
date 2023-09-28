@@ -1,0 +1,11 @@
+.post{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    
+}
+.posts{
+    background-color: aquamarine;
+    padding: 10px 10px;
+    border-radius: 5px;
+}

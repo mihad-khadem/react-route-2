@@ -4,18 +4,21 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom"
-import App from './App.jsx'
 import './index.css'
 import Home from './components/home/Home.jsx'
 import About from './components/about/About.jsx'
 import Contact from './components/contact/Contact.jsx'
 import Users from './components/users/Users.jsx'
 import UserDetails from './components/userDetails/UserDetails.jsx'
+import Posts from './post/Posts.jsx'
+import PostDetails from './post/PostDetails.jsx'
+import ErrorPage from './components/error/ErrorPage'
 
 const router = createBrowserRouter ([
   {
     path: '/',
     element: <Home/>,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: '/about',
@@ -34,6 +37,17 @@ const router = createBrowserRouter ([
         path: '/users/:userId',
         loader: ({params}) => fetch(`https://jsonplaceholder.typicode.com/users/${params.userId}`),
         element: <UserDetails/>
+      },
+      {
+        path:'/posts',
+        loader: () => fetch('https://jsonplaceholder.typicode.com/posts'),
+        element: <Posts/>
+      },
+      {
+        path: '/posts/:userId',
+        loader: ({params}) => fetch(`https://jsonplaceholder.typicode.com/posts/${params.userId}`),
+        element: <PostDetails/>
+
       }
     ]
   },
@@ -45,7 +59,8 @@ const router = createBrowserRouter ([
     path: '/contact',
     element: <div>Hello from Contact</div>
     
-  }
+  },
+  
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
